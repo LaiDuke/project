@@ -73,36 +73,7 @@
             });
         });
     </script>
-    <script type="text/javascript" about="add_purchase_product">
-        $(document).ready(function(){
-            $("#product_selected").change(function(event){
-                $("#unit_select").remove();
-                var product_id = $("#product_selected").val();
-                $.get("{{asset("api/products")}}/"+product_id, function(data, status){
-                    $.notify(status, "success");
-                        $("#unit_div").append('<select class="form-control" name="unit" id="unit_select">\n' +
-                            '                                <option value="1">Đơn vị chuẩn</option>\n' +
-                            '                            </select>');
-                        $.each(data.self_unit, function (index, value) {
-                            $("#unit_select").append('<option value="'+value.quantity+'">'+value.name+'</option>');
-                        });
-
-                    // if (data.self_property){
-                    //     $("#product_col").after('<th>Đơn vị</th>');
-                    //     $("#product_col_val").after(
-                    //         '<td><select class="form-control" name="unit" id="unit_select">\n' +
-                    //         '    <option value="1">Đơn vị chuẩn</option>\n' +
-                    //         '</select></td>');
-                    //     $.each(data.self_unit, function (index, value) {
-                    //         $("#unit_select").append('<option value="'+value.quantity+'">'+value.name+'</option>');
-                    //     });
-                    // }
-                });
-            });
-        });
-
-    </script>
-    <script type="text/javascript" about="submit_producer">
+    <script type="text/javascript" about="confirm_producer">
         $(document).ready(function () {
             $("#producer_submit").click(function(event) {
                 let data_up = $("#general").serializeArray();
@@ -150,12 +121,12 @@
                         '                <div class="form-row">\n' +
                         '                    <div class="col-md-4">\n' +
                         '                        <div class="position-relative form-group"><label><strong>Tổng tiền</strong></label>\n' +
-                        '                            <input class="form-control" disabled>\n' +
+                        '                            <input class="form-control" value="0" type="number" id="total_money" disabled>\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <div class="col-md-4">\n' +
                         '                        <div class="position-relative form-group"><label><strong>Tiền trả</strong></label>\n' +
-                        '                            <input class="form-control" disabled>\n' +
+                        '                            <input class="form-control" type="number" id="paid_money">\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <div class="col-md-4">\n' +
@@ -171,6 +142,112 @@
             });
         });
 
+    </script>
+    <script type="text/javascript" about="purchase_product">
+        $(document).ready(function(){
+            $("#product_selected").change(function(){
+                $("#unit_select").remove();
+                var product_id = $("#product_selected").val();
+                $.get("{{asset("api/products")}}/"+product_id, function(data, status){
+                    $.notify(status, "success");
+                        $("#unit_div").append('<select class="form-control" name="unit" id="unit_select">\n' +
+                            '                                <option value="1">Đơn vị chuẩn</option>\n' +
+                            '                            </select>');
+                        $.each(data.self_unit, function (index, value) {
+                            $("#unit_select").append('<option value="'+value.quantity+'">'+value.name+'</option>');
+                        });
+
+                    // if (data.self_property){
+                    //     $("#product_col").after('<th>Đơn vị</th>');
+                    //     $("#product_col_val").after(
+                    //         '<td><select class="form-control" name="unit" id="unit_select">\n' +
+                    //         '    <option value="1">Đơn vị chuẩn</option>\n' +
+                    //         '</select></td>');
+                    //     $.each(data.self_unit, function (index, value) {
+                    //         $("#unit_select").append('<option value="'+value.quantity+'">'+value.name+'</option>');
+                    //     });
+                    // }
+                });
+            });
+        });
+
+    </script>
+    <script type="text/javascript" about="add_purchase_product">
+        var index = 1;
+        function pad (str, max) {
+            str = str.toString();
+            return str.length < max ? pad("0" + str, max) : str;
+        }
+        $(document).ready(function(){
+            $("#p_p_submit").click(function (event) {
+                var product_id = $("#product_selected").val();
+                var form_data = $("#pick_product_form").serializeArray();
+                var unitTxt = $("#unit_select option:selected").text();
+                console.log(unitTxt);
+                event.preventDefault();
+                $.get("{{asset("api/products")}}/"+product_id, function (data, status) {
+                    $.notify(status, "success");
+                    {
+                        $("#product_ticket").append('<tr>\n' +
+                            '                    <td class="text-center text-muted">'+index+'</td>\n' +
+                            '                    <td>\n' +
+                            '                        <div class="widget-content p-0">\n' +
+                            '                            <div class="widget-content-wrapper">\n' +
+                            '                                <div class="widget-content-left mr-3">\n' +
+                            '                                    <div class="widget-content-left">\n' +
+                            '                                        <img width="40" class="rounded-circle" src="'+data.self.img1+'" alt="">\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                                <div class="widget-content-left flex2">\n' +
+                            '                                    <div class="widget-heading">SP'+pad(data.self.id,6)+'<input name="p_p['+index+'][product_id]" value="'+data.self.id+'" style="display: none"></div>\n' +
+                            '                                    <div class="widget-subheading opacity-7">'+data.self.name+'</div>\n' +
+                            '                                </div>\n' +
+                            '                            </div>\n' +
+                            '                        </div>\n' +
+                            '                    </td>\n' +
+                            '                    <td class="text-center">' +
+                            '                       <div class="badge badge-success">Tiêu chuẩn</div>\n' +
+                            '                    </td>\n' +
+                            '                    <td class="text-center">\n' +
+                            '                        <div class="badge badge-warning">'+unitTxt+'<input name="p_p['+index+'][unit]" value="'+form_data[1].value+'" style="display: none"></div>\n' +
+                            '                    </td>\n' +
+                            '                    <td class="text-center">\n' +
+                            '                       <div class="badge badge-primary">'+form_data[2].value+'<input name="p_p['+index+'][quantity]" value="'+form_data[2].value+'" style="display: none"></div>\n' +
+                            '                    </td>\n' +
+                            '                    <td class="text-center">\n'+form_data[3].value+'<input name="p_p['+index+'][price]" value="'+form_data[3].value+'" style="display: none"></td>\n' +
+                            '                    <td class="text-center">\n' +
+                            '                       <div class="badge badge-danger" id="money['+index+']">'+form_data[2].value*form_data[3].value+'</div>\n' +
+                            '                    </td>\n' +
+                            '                    <td class="text-center"><input type="checkbox" id="product['+index+++']"></td>\n' +
+                            '                </tr>');
+                        var tmp;
+                        if ($("#total_money").val()) tmp = parseFloat($("#total_money").val());
+                        tmp += form_data[2].value*form_data[3].value;
+                        $("#total_money").val(tmp);
+                        $("#pick_product_form")[0].reset();
+                    }
+
+                })
+
+
+            });
+        });
+
+    </script>
+    <script type="text/javascript" about="done_purchase">
+        $.ajaxSetup({
+
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+
+        });
+        $(document).ready(function () {
+            $("#done_purchase").click(function () {
+                var data = $("#purchase_form").serializeArray();
+                console.log(data);
+            });
+        });
     </script>
 @endsection
 @section('title_main')
@@ -284,7 +361,7 @@
             <form class="" id="pick_product_form">
                 <div class="form-row">
                     <div class="col-md-4">
-                        <div class="position-relative form-group"><label><strong>Tổng tiền</strong></label>
+                        <div class="position-relative form-group"><label><strong>Chọn sản phẩm</strong></label>
                             <select name="id" class="form-control" id="product_selected">
                                 <option>Chọn sản phẩm</option>
                                 @foreach($product as $pro)
@@ -298,7 +375,7 @@
                     <div class="col-md-2">
                         <div class="position-relative form-group" id="unit_div"><label><strong>Đơn vị</strong></label>
                             <select class="form-control" name="unit" id="unit_select">
-                                <option value="1">Đơn vị chuẩn</option>
+                                <option value="Đơn vị chuẩn(1)">Đơn vị chuẩn</option>
                             </select>
                         </div>
                     </div>
@@ -320,14 +397,32 @@
         </div>
 
     </div>
-    <script type="text/javascript" about="add_purchase_product">
-        $(document).ready(function(){
-            $("#p_p_submit").click(function (event) {
-                alert("haha");
-                event.preventDefault();
-            });
-        });
+    <div class="main-card mb-3 card">
+        <div class="card-header">Phiếu nhập
+        </div>
+        <form id="purchase_form"><div class="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Sản phẩm</th>
+                        <th class="text-center">Thuộc tính</th>
+                        <th class="text-center">Đơn vị</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Đơn giá</th>
+                        <th class="text-center">Thành tiền</th>
+                        <th class="text-center">V</th>
+                    </tr>
+                    </thead>
+                    <tbody id="product_ticket">
 
-    </script>
+                    </tbody>
+                </table>
+            </div></form>
+        <div class="d-block text-center card-footer">
+            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+            <button class="btn-wide btn btn-success" id="done_purchase">Xác nhận nhập</button>
+        </div>
+    </div>
 
 @endsection
