@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::apiResource('products', 'Api\ProductsController');
 Route::apiResource('categories', 'Api\CategoriesController');
-
 Route::apiResource('brands', 'Api\BrandsController');
 Route::apiResource('places', 'Api\PlacesController');
 Route::apiResource('producers', 'Api\ProducersController');
+Route::apiResource('purchases', 'Api\PurchasesController');
+

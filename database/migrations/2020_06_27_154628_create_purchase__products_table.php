@@ -17,7 +17,7 @@ class CreatePurchaseProductsTable extends Migration
             $table->id();
             $table->integer("product_id");
             $table->integer("purchase_id");
-            $table->string("unit");
+            $table->float("unit");
             $table->double("quantity");
             $table->string("property");
             $table->double("price");

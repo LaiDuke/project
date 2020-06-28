@@ -88,13 +88,13 @@
                         '                    <div class="col-md-7">\n' +
                         '                        <div class="position-relative form-group"><label><strong>Nhà cung cấp</strong></label>\n' +
                         '                            <div class="input-group">\n' +
-                        '                                <input class="form-control" value="'+data.self.name+'" disabled>\n' +
+                        '                                <input  class="form-control" value="'+data.self.name+'" disabled><input name="producer_id" value="'+data.self.id+'" style="display: none">\n' +
                         '                            </div>\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <div class="col-md-4">\n' +
                         '                        <div class="position-relative form-group"><label><strong>Hình thức nhập</strong></label>\n' +
-                        '                            <input class="form-control" value="'+data_up[1].value+'" disabled>\n' +
+                        '                            <input class="form-control" value="'+data_up[1].value+'" disabled><input name="type" value="'+data_up[1].value+'" style="display: none">\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <div class="col-md-1">\n' +
@@ -126,7 +126,7 @@
                         '                    </div>\n' +
                         '                    <div class="col-md-4">\n' +
                         '                        <div class="position-relative form-group"><label><strong>Tiền trả</strong></label>\n' +
-                        '                            <input class="form-control" type="number" id="paid_money">\n' +
+                        '                            <input name="paid_money" class="form-control" type="number" id="paid_money">\n' +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <div class="col-md-4">\n' +
@@ -244,8 +244,17 @@
         });
         $(document).ready(function () {
             $("#done_purchase").click(function () {
-                var data = $("#purchase_form").serializeArray();
-                console.log(data);
+                var data = $(":input").serializeArray();
+
+                $.ajax({
+                    url: "{{asset("api/purchases")}}",
+                    type:"POST",
+                    data:data,
+                    success:function(data){
+                        alert(data.success);
+                        location.reload();
+                    },
+                });
             });
         });
     </script>
@@ -319,6 +328,7 @@
     </div>
 @endsection
 @section('main_content')
+
     <div class="main-card mb-3 card" id="general_info">
         <div class="card-body"><h5 class="card-title">Thông tin chung</h5>
             <form class="" id="general">
