@@ -23,4 +23,5 @@ Route::apiResource('brands', 'Api\BrandsController');
 Route::apiResource('places', 'Api\PlacesController');
 Route::apiResource('producers', 'Api\ProducersController');
 Route::apiResource('purchases', 'Api\PurchasesController');
-
+Route::apiResource('invoices', 'Api\InvoicesController');
+Route::apiResource('customers', 'Api\CustomersController');

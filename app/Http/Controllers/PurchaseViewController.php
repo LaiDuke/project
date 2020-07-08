@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\PlacesController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\ProducersController;
+use App\Http\Controllers\Api\PurchasesController;
 use Illuminate\Http\Request;
 
 class PurchaseViewController extends Controller
@@ -18,7 +19,9 @@ class PurchaseViewController extends Controller
      */
     public function index()
     {
-        return view('purchase_index');
+        $purchaseController = new PurchasesController();
+        $purchaseController = $purchaseController->index();
+        return view('purchase_index')->with(['purchases'=>$purchaseController]);
     }
 
     /**

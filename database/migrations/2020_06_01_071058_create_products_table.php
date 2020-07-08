@@ -20,11 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('place_id')->nullable();
-            $table->string('img1')->nullable();
-            $table->string('img2')->nullable();
-            $table->string('img3')->nullable();
-            $table->string('img4')->nullable();
-            $table->string('img5')->nullable();
+            $table->string('img')->nullable();
             $table->double('price');
             $table->double('purchase_price')->nullable();
             $table->tinyInteger('order');

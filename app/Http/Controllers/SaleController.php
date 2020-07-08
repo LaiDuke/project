@@ -4,25 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\CustomersController;
+use App\Http\Controllers\Api\InvoicesController;
 use App\Http\Controllers\Api\PlacesController;
+use App\Http\Controllers\Api\ProducersController;
 use App\Http\Controllers\Api\ProductsController;
-use App\Http\Controllers\Api\UnitsController;
-use App\Place;
-use App\Product;
-use http\Env\Response;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\RequestMatcher;
-use Symfony\Component\HttpFoundation\Test\Constraint\RequestAttributeValueSame;
 
-class ProductViewController extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $invoiceController = new InvoicesController();
+        $invoiceController = $invoiceController->index();
+        return view('invoice_index')->with(['invoices'=>$invoiceController]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function create()
     {
         $product = new ProductsController();
         $product = $product->index();
@@ -32,41 +40,32 @@ class ProductViewController extends Controller
         $brand = $brand->index();
         $place = new PlacesController();
         $place = $place->index();
-        return view("product_index")->with(["product" => $product, "category" => $category, "brand" => $brand, "place" => $place]);
-    }
+        $customer = new CustomersController();
+        $customer = $customer->index();
+        return view("invoice_create")->with(['customer'=>$customer,'product'=>$product, 'category'=>$category, 'brand'=>$brand, 'place'=>$place]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $image_name = $request->file('img1')->getRealPath();
-        return response()->json(['success'=>$image_name]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $ct = new ProductsController();
-        return view("product_detail")->with($ct->show($id));
+        //
     }
 
     /**
@@ -96,11 +95,10 @@ class ProductViewController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $pr = new ProductsController();
-        if ($pr->destroy($id)) return back();
+        //
     }
 }

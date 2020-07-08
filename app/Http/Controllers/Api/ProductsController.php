@@ -8,6 +8,7 @@ use App\Property;
 use App\Unit;
 use Illuminate\Http\Request;
 use App\Product;
+use JD\Cloudder\Facades\Cloudder;
 
 
 class ProductsController extends Controller
@@ -19,6 +20,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
+
         return Product::all();
 
     }
@@ -32,6 +34,8 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
+        if ($request->imageUrl) $product->img = "http://res.cloudinary.com/a123abc/image/upload/".$request->imageUrl;
+        else $product->img = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
         $product->name = $request->name;
         $product->qr_code = $request->qr_code;
         $product->price = $request->price;
@@ -39,11 +43,9 @@ class ProductsController extends Controller
         $product->brand_id = $request->brand_id;
         $product->place_id = $request->place_id;
         $product->standard_unit = $request->standard_unit;
-        if($request->ID == null) $request->ID = $request->number_product + 1;
-        $product->id = $request->ID;
+        if($request->ID) $product->id = $request->ID;
         $product->least_left = 1;
         $product->most_left =99999999;
-        $product->user_id = 00000000;
         if($request->order) $product->order = 0;
         else $product->order = 1;
         $product->user_id = 1;//nhớ sửa sau
@@ -53,10 +55,13 @@ class ProductsController extends Controller
                 $unitRequest = (object)$unitRequest;
                 $unit = new Unit();
                 $unit->name = $unitRequest->name;
+                if ($unitRequest->image) $unit->image = $unitRequest->image;
+                else $unit->image = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
                 $unit->quantity = $unitRequest->quantity;
                 $unit->price = $unitRequest->price;
-                $unit->product_id = $request->ID;
-                $unit->discount = 0;
+                $unit->product_id = $product->id ;
+                if (isset($unitRequest->s_a_s))$unit->sale_as_standard = 1;
+                else $unit->sale_as_standard = 0;
                 $unit->save();
             }
         }
@@ -66,7 +71,7 @@ class ProductsController extends Controller
                 $property = new Property();
                 $property->name = $propertyRequest->name;
                 $property->value = $propertyRequest->value;
-                $property->product_id = $request->ID;
+                $property->product_id = $product->id;
                 $property->note = "empty";
                 $property->save();
             }
@@ -83,7 +88,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         $pro = Product::find($id);
-        return ["self"=>$pro,"self_unit"=>$pro->Unit,"self_property"=>$pro->Property];
+        return ["self"=>$pro,"self_unit"=>$pro->Unit,"self_property"=>$pro->Property, "self_purchase"=>$pro->Purchase];
     }
 
     /**
@@ -106,6 +111,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Product::find($id);
+        $post->delete();
+        return 1;
     }
 }

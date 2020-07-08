@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
-use App\Producer;
 use Illuminate\Http\Request;
 
-class ProducersController extends Controller
+class CustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Producer[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return Customer[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return Producer::all();
+        return Customer::all();
     }
 
     /**
@@ -26,14 +26,15 @@ class ProducersController extends Controller
      */
     public function store(Request $request)
     {
-        $producer = new Producer();
-        $producer->name = $request->name;
-        $producer->tax_code = $request->tax_code;
-        $producer->phone = $request->phone;
-        $producer->email = $request->email;
-        $producer->note = $request->note;
-        $producer->save();
-        return response()->json(["producer"=>$producer,"success"=>"Nhà sản xuất thêm thành công!"]);
+        $customer = new Customer();
+        $customer->name = $request->name;
+        if ($request->imageUrl) $customer->image = "http://res.cloudinary.com/a123abc/image/upload/".$request->imageUrl;
+        else $customer->image = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
+        $customer->phone = $request->phone;
+        $customer->date_of_birth = $request->date_of_birth;
+        $customer->note = $request->note;
+        $customer->save();
+        return response()->json(["customer"=>$customer,"success"=>"Khách hàng thêm thành công!"]);
     }
 
     /**
@@ -44,8 +45,8 @@ class ProducersController extends Controller
      */
     public function show($id)
     {
-        $producer = Producer::find($id);
-        return ['self'=>$producer,'self_purchase'=>$producer->Purchase];
+        $customer = Customer::find($id);
+        return ['self'=>$customer,'self_purchase'=>$customer->Purchase];
     }
 
     /**

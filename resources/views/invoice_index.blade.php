@@ -151,13 +151,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset("Purchase")}}"  class="mm-active">
+                    <a href="{{asset("Purchase")}}">
                         <i class="metismenu-icon pe-7s-eyedropper">
                         </i>Hàng Nhập
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset("Sale")}}">
+                    <a href="{{asset("Sale")}}"  class="mm-active">
                         <i class="metismenu-icon pe-7s-pendrive">
                         </i>Hóa Đơn
                     </a>
@@ -182,13 +182,15 @@
         </div>
     </div>
 @endsection
+@section('add_script')
+@endsection
 @section('title_main')
     <div class="page-title-heading">
         <div class="page-title-icon">
             <i class="pe-7s-wallet icon-gradient bg-plum-plate">
             </i>
         </div>
-        <div>Dashboard Boxes
+        <div>Danh sách hóa đơn
             <div class="page-title-subheading">Highly configurable boxes best used for showing
                 numbers in an user friendly way.
             </div>
@@ -196,9 +198,9 @@
     </div>
     <div class="page-title-actions">
 
-        <button type="button" data-toggle="tooltip" title="Nhập hàng hóa" data-placement="bottom"
+        <button type="button" data-toggle="tooltip" title="Bán Hàng" data-placement="bottom"
                 class="btn-shadow mr-3 btn btn-dark">
-            <a href="{{route('Purchase.create')}}" style="text-decoration: none; color:inherit;">
+            <a href="{{route('Sale.create')}}">
                 <i class="fa fa-plus"></i>
             </a>
         </button>
@@ -256,30 +258,30 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Mã nhập hàng</th>
+                <th>Mã hóa đơn</th>
                 <th>Tổng tiền</th>
-                <th>Nhà cung cấp</th>
+                <th>Khách hàng</th>
                 <th>Thời gian</th>
                 <th style="text-align: center">Chi tiết</th>
                 <th style="text-align: center">Xóa</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($purchases as $index=>$purchase)
+            @foreach($invoices as $index=>$invoice)
 
                 <tr>
                     <th scope="row">{{$index}}</th>
-                    <td>{{$purchase->id}}</td>
-                    <td>{{$purchase->total_amount}}</td>
-                    <td>{{$purchase->Producer->name}}</td>
-                    <td>{{$purchase->created_at}}</td>
+                    <td>{{$invoice->id}}</td>
+                    <td>{{$invoice->total_amount}}</td>
+                    <td>{{$invoice->Customer->name}}</td>
+                    <td>{{$invoice->created_at}}</td>
                     <td style="text-align: center"><a class="btn btn-sm btn-info" href="">xem</a></td>
                     <td style="text-align: center">
-                        <form action="{{route('Purchase.destroy', $purchase->id)}}"
+                        <form action="{{route('Product.destroy', $invoice->id)}}"
                               method="POST"
                               onsubmit="return confirm('Sure ?')">
                             @csrf
-                            <input type="hidden" name="_method" value="DELETE"/>
+                            <input type="hidden" name="_method" value="DELETE" />
                             <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
                         </form>
                     </td>

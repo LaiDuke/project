@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource("/Product", "ProductViewController");
-Route::resource("/Purchase", 'PurchaseViewController');
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index');
+    Route::resource("/Product", "ProductViewController");
+    Route::resource("/Purchase", 'PurchaseViewController');
+    Route::resource("Sale", "SaleController");
+});

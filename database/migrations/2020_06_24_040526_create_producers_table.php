@@ -19,7 +19,7 @@ class CreateProducersTable extends Migration
             $table->string("phone");
             $table->string("email");
             $table->string("tax_code");
-            $table->string("note")->nullable();
+            $table->string("note");
             $table->timestamps();
         });
     }

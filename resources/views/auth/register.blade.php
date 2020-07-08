@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,9 +7,21 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" style="text-align: center">
                         @csrf
-
+                        <img src="" alt="" id="image-preview" style="width: 100px">
+                        <div class="form-group row">
+                            <label for="image_pick" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                            <div class="col-md-6">
+                                <input id="image_pick" type="file" class="form-control @error('img') is-invalid @enderror" name="name" value="{{ old('img') }}" required autocomplete="img" autofocus>
+                                <input type="hidden" name="img">
+                                @error('img')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -74,4 +85,30 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var cloudName= "a123abc";
+        var unsignedUploadPreset="qbhmhxzq";
+        $(document).on('change', "#image_pick", function () {
+            var file = this.files[0];
+            var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var responseDataJson = JSON.parse(this.responseText);
+                    console.log(responseDataJson);
+                    var imageUrl = document.querySelector('input[name="img"]');
+                    imageUrl.value = responseDataJson.public_id;
+                    document.getElementById('image-preview').src = responseDataJson.url;
+                }
+            }
+            xhr.open('POST', url, true);
+            var fd = new FormData();
+            fd.append('upload_preset', unsignedUploadPreset);
+            fd.append('tags', 'browser_upload');
+            fd.append('file', file);
+            xhr.send(fd);
+        });
+    });
+</script>
 @endsection

@@ -1,4 +1,187 @@
 @extends('layouts.admin')
+@section('sidebar')
+    <div class="app-header__logo">
+        <div class="logo-src"></div>
+        <div class="header__pane ml-auto">
+            <div>
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                        <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="app-header__mobile-menu">
+        <div>
+            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="app-header__menu">
+        <span>
+            <button type="button"
+                    class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                <span class="btn-icon-wrapper">
+                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                </span>
+            </button>
+        </span>
+    </div>
+    <div class="scrollbar-sidebar">
+        <div class="app-sidebar__inner">
+            <ul class="vertical-nav-menu">
+                <li class="app-sidebar__heading">Trang chủ</li>
+                <li>
+                    <a href="{{asset("/")}}">
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Trang chủ
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Quản Lý</li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Sản Phẩm Theo
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{asset("Product")}}">
+                                <i class="metismenu-icon"></i>
+                                Nhà Cung Cấp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Product")}}">
+                                <i class="metismenu-icon">
+                                </i>Nhóm Hàng
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Product")}}">
+                                <i class="metismenu-icon"></i>
+                                Nhãn Hiệu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Product")}}">
+                                <i class="metismenu-icon">
+                                </i>Khu Vực Để
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-car"></i>
+                            Hóa Đơn Theo
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Ngày
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Tuần
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Tháng
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Người Bán
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Khách Hàng
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Số Tiền
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{asset("Purchase")}}">
+                                <i class="metismenu-icon">
+                                </i>Sản Phẩm
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="tables-regular.html">
+                        <i class="metismenu-icon pe-7s-display2"></i>
+                        Nhân viên
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Bán Hàng</li>
+                <li>
+                    <a href="{{asset("Sale/create")}}">
+                        <i class="metismenu-icon pe-7s-display2"></i>
+                        Bán hàng ngay
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Danh mục</li>
+                <li>
+                    <a href="{{asset("Product")}}" class="mm-active">
+                        <i class="metismenu-icon pe-7s-mouse">
+                        </i>Sản Phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="{{asset("Product")}}">
+                        <i class="metismenu-icon pe-7s-mouse">
+                        </i>Bảng Giá/Hàng Hóa
+                    </a>
+                </li>
+                <li>
+                    <a href="{{asset("Purchase")}}">
+                        <i class="metismenu-icon pe-7s-eyedropper">
+                        </i>Hàng Nhập
+                    </a>
+                </li>
+                <li>
+                    <a href="{{asset("Sale")}}">
+                        <i class="metismenu-icon pe-7s-pendrive">
+                        </i>Hóa Đơn
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">Báo Cáo</li>
+                <li>
+                    <a href="">
+                        <i class="metismenu-icon pe-7s-graph2">
+                        </i>Biểu Đồ
+                    </a>
+                </li>
+                <li class="app-sidebar__heading">PRO Version</li>
+                <li>
+                    <a href="#"
+                       target="_blank">
+                        <i class="metismenu-icon pe-7s-graph2">
+                        </i>
+                        Upgrade to PRO
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+@endsection
 @section('add_script')
     {{--đây là modal để add product--}}
     <div  class="modal fade" id="addproduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -12,9 +195,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="new_product" class="needs-validation" novalidate>
+                    <form id="new_product" enctype="multipart/form-data" class="needs-validation" novalidate>
                         @csrf
-                        <input name="number_product" type="number" style="display: none" id="number_product" value="{{count($product)}}">
                         <ul class="nav nav-tabs nav-justified">
                             <li class="nav-item"><a class="nav-link show active" href="#tab-eg11-0" data-toggle="tab">Thuộc tính chung</a></li>
                             <li class="nav-item"><a class="nav-link show" href="#tab-eg11-1" data-toggle="tab">Mô tả chi tiết</a></li>
@@ -44,53 +226,64 @@
                                                 name="price" class="form-control" id="price" type="number" placeholder=""></div>
                                     </div>
                                 </div>
-                                <div class="position-relative form-group"><label for="category_id"><strong>Nhóm hàng</strong></label>
-                                    <div class="input-group"><select name="category_id" class="custom-select" id="category_id" type="select">
-                                            <option value="0">Chọn nhóm hàng</option>
-                                            @foreach($category as $cate)
-                                                <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-append" data-toggle="tooltip" title="Thêm nhóm hàng" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addcategory">
-                                                <i class="fa fa-plus"></i>
-                                            </a></div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="category_id"><strong>Nhóm hàng</strong></label>
+                                            <div class="input-group"><select name="category_id" class="custom-select" id="category_id" type="select">
+                                                    <option value="0">Chọn nhóm hàng</option>
+                                                    @foreach($category as $cate)
+                                                        <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="input-group-append" data-toggle="tooltip" title="Thêm nhóm hàng" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addcategory">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="position-relative form-group"><label for="brand_id"><strong>Thương hiệu</strong></label>
-                                    <div class="input-group"><select name="brand_id" class="custom-select" id="brand_id" type="select">
-                                            <option value="">Chọn thương hiệu</option>
-                                            @foreach($brand as $br)
-                                                <option value="{{$br->id}}">{{$br->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-append" data-toggle="tooltip" title="Thêm thương hiệu" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addbrand">
-                                                <i class="fa fa-plus"></i>
-                                            </a></div>
-                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="brand_id"><strong>Thương hiệu</strong></label>
+                                            <div class="input-group"><select name="brand_id" class="custom-select" id="brand_id" type="select">
+                                                    <option value="">Chọn thương hiệu</option>
+                                                    @foreach($brand as $br)
+                                                        <option value="{{$br->id}}">{{$br->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="input-group-append" data-toggle="tooltip" title="Thêm thương hiệu" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addbrand">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a></div>
+                                            </div>
 
 
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="position-relative form-group"><label for="place_id"><strong>Vị trí</strong></label>
-                                    <div class="input-group"><select name="place_id" class="custom-select" id="place_id" type="select">
-                                            <option value="">Chọn vị trí</option>
-                                            @foreach($place as $pl)
-                                                <option value="{{$pl->id}}">{{$pl->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-append" data-toggle="tooltip" title="Thêm vị trí" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addplace">
-                                                <i class="fa fa-plus"></i>
-                                            </a></div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="place_id"><strong>Vị trí</strong></label>
+                                            <div class="input-group"><select name="place_id" class="custom-select" id="place_id" type="select">
+                                                    <option value="">Chọn vị trí</option>
+                                                    @foreach($place as $pl)
+                                                        <option value="{{$pl->id}}">{{$pl->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="input-group-append" data-toggle="tooltip" title="Thêm vị trí" data-placement="bottom"><a class="mb-2 form-control" data-toggle="modal" data-target="#addplace">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="exampleFile"><strong>Ảnh</strong></label><br>
+                                            <img src="" alt="" id="image-preview" style="width: 100px">
+                                            <input style="width: 30%" class="btn btn-outline-info form-control" type="file" id="image_pick">
+                                            <input type="hidden" name="imageUrl">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="position-relative form-group"><label for="exampleFile"><strong>Ảnh</strong></label>
-                                    <div class="row">
-                                        <div class="col-sm-3"><input name="img1" class="form-control-file" id="img1" type="file"></div>
-                                        <div class="col-sm-3"><input name="img2" class="form-control-file" id="img2" type="file"></div>
-                                        <div class="col-sm-3"><input name="img3" class="form-control-file" id="img3" type="file"></div>
-                                        <div class="col-sm-3"><input name="img4" class="form-control-file" id="img4" type="file"></div>
-                                    </div>
-                                </div>
+
+
                                 <div class="position-relative form-group">
                                     <div class="card">
                                         <div class="card-header" style="background: #dedede">
@@ -126,10 +319,30 @@
                             </div>
                             <div class="tab-pane show" id="tab-eg11-1" role="tabpanel">
                                 <textarea name="testCK" id="testCK"></textarea>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="ID"><strong>Cảnh báo tối thiểu</strong></label><input
+                                                name="least_left" class="form-control" type="number" placeholder="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group"><label for="qr_code"><strong>Cảnh báo tối đa</strong></label><input
+                                                name="most_left" class="form-control" type="number" placeholder="99999999"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="tab-pane show" id="tab-eg11-2" role="tabpanel"><p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                                    type specimen book. It has
-                                    survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p></div>
+                            <div class="tab-pane show" id="tab-eg11-2" role="tabpanel">
+                                <div class="position-relative form-group">
+                                    <div class="card">
+                                        <div class="card-header" style="background: #dedede">
+                                            <label for="name">Nhập thuộc tính</label>
+                                        </div>
+                                        <div class="card-body" id="morepro">
+                                        </div>
+                                        <a type="button" class="btn" id="add_pro">Thêm thuộc tính <i class="fa fa-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -223,8 +436,7 @@
             </div>
         </div>
     </div>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+    <script about="validate">
         (function() {
             'use strict';
             window.addEventListener('load', function() {
@@ -244,25 +456,29 @@
             }, false);
         })();
     </script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>
+    <script about="ck-editor">
         CKEDITOR.replace( 'testCK' );
     </script>
     <script type="text/javascript" about="add_product">
         var unitclk = 0;
         var units = 0;
         var proclk = 0;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $(document).ready(function(){
             $("#add_pro").click(function () {
                 $('#morepro').append(
                     '<div class="input-group" id="property'+proclk+'">\n' +
                     '  <input class="form-control" list="property_name" name="property['+proclk+'][name]">\n' +
                     '  <datalist id="property_name">\n' +
-                    '    <option value="Edge">\n' +
-                    '    <option value="Firefox">\n' +
-                    '    <option value="Chrome">\n' +
-                    '    <option value="Opera">\n' +
-                    '    <option value="Safari">\n' +
+                    '    <option value="Vị">\n' +
+                    '    <option value="Khối lượng">\n' +
+                    '    <option value="Màu Sắc">\n' +
+                    '    <option value="Kích thước">\n' +
+                    '    <option value="Thuộc tính A">\n' +
                     '  </datalist>\n'+
                     '   <input name="property['+proclk+'][value]" class="form-control" type="text" placeholder="Giá trị">\n' +
                     '   <div class="input-group-append" data-toggle="tooltip" title="Xóa thuộc tính" data-placement="bottom"><a class="mb-2 form-control closepro"  id="'+proclk+'" data-toggle="modal">\n' +
@@ -282,14 +498,21 @@
                         '    <tbody>\n' +
                         '    <tr class="">\n' +
                         '        <th><span>Tên đơn vị</span></th>\n' +
+                        '        <th><span>Ảnh</span></th>\n' +
                         '        <th><span>Giá trị quy đổi</span></th>\n' +
                         '        <th><span >Giá bán</span></th>\n' +
+                        '        <th><div data-toggle="tooltip" title="Bán như đơn vị cơ bản" data-placement="bottom" style="text-align: center"><a class="form-control-sm"><i class="fa fa-cubes"></i></a></div></th>\n' +
                         '        <th></th>\n' +
                         '    </tr>\n' +
-                        '<tr id="unitrow0">\n' +
+                        '<tr>\n' +
                         '        <td><input name="unit[0][name]" type="text" class="form-control form-control-sm"></td>\n' +
+                        '        <td><input class="btn btn-outline-info btn-sm form-control-sm image_unit_pick" type="file" id="0" style="width: 100px">\n' +
+                        '            <img src="" alt="" id="image-unit-preview[0]" style="width: 100px">\n' +
+                        '            <input type="hidden" name="unit[0][image]"  >' +
+                        '        </td>\n' +
                         '        <td><input name="unit[0][quantity]" type="number" class="form-control form-control-sm" value="1"> </td>\n' +
                         '        <td><input name="unit[0][price]" type="number" class="form-control form-control-sm" value="0"></td>\n' +
+                        '        <td><input name="unit[0][s_a_s]" type="checkbox" class="form-control-sm form-control" checked></td>\n' +
                         '        <td class="pr-0"><button id="0" type="button" class="btn-danger btn-sm closeunit" title="Xóa đơn vị" ><i class="fa fa-trash"></i></button></td>\n' +
                         '    </tr>' +
                         '    </tbody>\n' +
@@ -297,11 +520,17 @@
                     unitclk++;
                     units++;
                 }
+
                 else{
                     $("#tbmore").append('<tr id="unitrow'+units+'">\n' +
                         '<td><input name="unit['+units+'][name]" type="text" class="form-control form-control-sm"></td>\n' +
+                        '<td><input class="btn btn-outline-info btn-sm form-control-sm image_unit_pick" type="file" id="'+units+'" style="width: 100px">\n' +
+                        '    <img src="" alt="" id="image-unit-preview['+units+']" style="width: 100px">\n' +
+                        '    <input type="hidden" name="unit['+units+'][image]"  >' +
+                        '</td>\n' +
                         '<td><input name="unit['+units+'][quantity]" type="number" class="form-control form-control-sm" value="1"> </td>\n' +
                         '<td><input name="unit['+units+'][price]" type="number" class="form-control form-control-sm" value="0"></td>\n' +
+                        '<td><input name="unit['+units+'][s_a_s]" type="checkbox" class="form-control-sm form-control" value="0"></td>\n' +
                         '<td class="pr-0"><button type="button" class="btn-danger btn-sm closeunit" id="'+units+'" title="Xóa đơn vị" ><i class="fa fa-trash"></i></button></td>\n' +
                         '</tr>');
                     unitclk++;
@@ -320,14 +549,55 @@
 
             });
         })
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $(document).ready(function(){
+            var cloudName= "a123abc";
+            var unsignedUploadPreset="qbhmhxzq";
+            $(document).on('change', "#image_pick", function () {
+                var file = this.files[0];
+                var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var responseDataJson = JSON.parse(this.responseText);
+                        console.log(responseDataJson);
+                        var imageUrl = document.querySelector('input[name="imageUrl"]');
+                        imageUrl.value = responseDataJson.public_id;
+                        document.getElementById('image-preview').src = responseDataJson.url;
+                        $.notify(responseDataJson.public_id, "success");
+                    }
+                }
+                xhr.open('POST', url, true);
+                var fd = new FormData();
+                fd.append('upload_preset', unsignedUploadPreset);
+                fd.append('tags', 'browser_upload');
+                fd.append('file', file);
+                xhr.send(fd);
+            });
+            $(document).on('change', ".image_unit_pick", function () {
+                var ID = $(this).attr('id');
+                var file = this.files[0];
+                var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var responseDataJson = JSON.parse(this.responseText);
+                        console.log(responseDataJson);
+                        var imageUrl = document.querySelector('input[name="unit['+ID+'][image]');
+                        imageUrl.value = responseDataJson.public_id;
+                        document.getElementById('image-unit-preview['+ID+']').src = responseDataJson.url;
+                        $.notify(responseDataJson.public_id, "success");
+                    }
+                }
+                xhr.open('POST', url, true);
+                var fd = new FormData();
+                fd.append('upload_preset', unsignedUploadPreset);
+                fd.append('tags', 'browser_upload');
+                fd.append('file', file);
+                xhr.send(fd);
+            });
             $("#new_pro_submit").click(function(event){
                 var data = $("#new_product").serializeArray();
+                console.log(data);
                 event.preventDefault();
                 $.ajax({
                     url: "{{asset("api/products")}}",
@@ -337,12 +607,12 @@
                         $("#new_product")[0].reset();
                         $("#addproduct .close").click();
                         $.notify(data.success, "success");
+                        alert(data.success);
                         location.reload();
                     },
                 });
             });
         });
-
     </script>
     <script type="text/javascript" about="add_category">
         $.ajaxSetup({
@@ -426,15 +696,15 @@
             <i class="pe-7s-wallet icon-gradient bg-plum-plate">
             </i>
         </div>
-        <div>Dashboard Boxes
-            <div class="page-title-subheading">Highly configurable boxes best used for showing
-                numbers in an user friendly way.
+        <div>Danh mục sản phẩm
+            <div class="page-title-subheading">Danh mục chung các sản phẩm mà cửa hàng có, mỗi 1 sản phẩm sẽ có thể có nhiều hàng hóa hoặc mức giá được bán.
+                <br>Ví dụ: Bia Hà Nội có thể có chai, lon, vv
             </div>
         </div>
     </div>
     <div class="page-title-actions">
 
-        <button type="button" data-toggle="tooltip" title="Thêm hàng hóa" data-placement="bottom"
+        <button type="button" data-toggle="tooltip" title="Thêm Sản Phẩm" data-placement="bottom"
                 class="btn-shadow mr-3 btn btn-dark">
             <a data-toggle="modal" data-target="#addproduct">
                 <i class="fa fa-plus"></i>
@@ -496,17 +766,11 @@
                 <th>#</th>
                 <th>Mã hàng</th>
                 <th>Ảnh</th>
-                <th>Mã Vạch</th>
                 <th>Tên sản phẩm</th>
                 <th>Tồn kho</th>
-                <th>Nhóm hàng</th>
-                <th>Thương hiệu</th>
-                <th>Vị trí</th>
                 <th>Giá bán</th>
-                <th>Giá vốn</th>
-                <th>Đơn vị cơ bản</th>
-                <th>Các đơn vị khác</th>
-                <th>Thuộc tính</th>
+                <th style="text-align: center">Chi tiết</th>
+                <th style="text-align: center">Xóa</th>
             </tr>
             </thead>
             <tbody>
@@ -515,32 +779,30 @@
             <tr>
                 <th scope="row">{{$index}}</th>
                 <td>SP{{substr(str_repeat(0, 6).$prd->id, - 6)}}</td>
-                <td>{{$prd->img1}}</td>
-                <td>{{$prd->qr_code}}</td>
+                <td><img src="{{$prd->img}}" style="height: 60px" alt></td>
                 <td>{{$prd->name}}</td>
-                <td>{{0}}</td>
-                <td>Nhóm hàng</td>
-                <td>tdương hiệu</td>
-                <td>Vị trí</td>
-                <td>Giá bán</td>
-                <td>Giá vốn</td>
-                <td>Đơn vị cơ bản</td>
-                <td>Các đơn vị khác</td>
-                <td>Thuộc tính</td>
+                <td>
+                    <?php
+                    $tmp = 0;
+                    if (isset($prd)){
+                        foreach ($prd->Purchase as $purchase) $tmp += $purchase->left;
+                    }
+                    echo $tmp;
+                    ?>
+                </td>
+                <td>{{$prd->price}}</td>
+                <td style="text-align: center"><a class="btn btn-sm btn-info" href="{{asset("/Product")}}/{{$prd->id}}">xem</a></td>
+                <td style="text-align: center">
+                    <form action="{{route('Product.destroy', $prd->id)}}"
+                          method="POST"
+                          onsubmit="return confirm('Sure ?')">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                    </form>
+                </td>
             </tr>
             @endforeach
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
             </tbody>
         </table>
     </div>

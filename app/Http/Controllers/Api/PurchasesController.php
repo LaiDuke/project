@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Purchase;
 use App\Purchase_Product;
+use App\Unit;
 use Illuminate\Http\Request;
 
 class PurchasesController extends Controller
@@ -16,7 +17,7 @@ class PurchasesController extends Controller
      */
     public function index()
     {
-        //
+        return Purchase::all();
     }
 
     /**
@@ -42,7 +43,8 @@ class PurchasesController extends Controller
             $purchase_product = new Purchase_Product();
             $purchase_product->product_id = $p_p['product_id'];
             $purchase_product->property = "-";
-            $purchase_product->unit = $p_p['unit'];
+            if (strcmp($p_p['unit_name'],'Đơn vị chuẩn')==0) $purchase_product->unit_id = 0;
+            else $purchase_product->unit_id = Unit::where('name',$p_p['unit_name'])->where('product_id', $p_p['product_id'])->where('quantity',$p_p['unit'])->value('id');
             $purchase_product->quantity = ($p_p['unit'])*($p_p['quantity']);
             $purchase_product->price = ($p_p['price'])/($p_p['unit']);
             $purchase_product->left = $purchase_product->quantity;
