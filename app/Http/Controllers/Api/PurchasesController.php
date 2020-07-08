@@ -35,7 +35,7 @@ class PurchasesController extends Controller
         else $purchase->type = 0;
         $purchase->paid = $request->paid_money;
         $purchase->status = 1;
-        $purchase->user_id = 1;
+        $purchase->user_id = $request->user()->id;
         $purchase->total_amount = 0;
         foreach ($request->p_p as $p_p) $purchase->total_amount += ($p_p['price'])*($p_p['quantity']);
         $purchase->save();

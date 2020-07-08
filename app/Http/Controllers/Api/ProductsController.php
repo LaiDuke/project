@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use App\Price;
 use App\Property;
 use App\Unit;
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 use JD\Cloudder\Facades\Cloudder;
 
 
@@ -20,7 +22,6 @@ class ProductsController extends Controller
      */
     public function index()
     {
-
         return Product::all();
 
     }
@@ -44,18 +45,24 @@ class ProductsController extends Controller
         $product->place_id = $request->place_id;
         $product->standard_unit = $request->standard_unit;
         if($request->ID) $product->id = $request->ID;
-        $product->least_left = 1;
-        $product->most_left =99999999;
+        $product->least_left = (int)$request->least_left;
+        $product->most_left = (int)$request->most_left;
         if($request->order) $product->order = 0;
         else $product->order = 1;
-        $product->user_id = 1;//nhớ sửa sau
+        $product->user_id = (int)$request->user_id;
         $product->save();
+        $price = new Price();
+        $price->product_id = $product->id;
+        $price->unit_id = 0;
+        $price->property = '-';
+        $price->price = $product->price;
+        $price->save();
         if ($request->unit){
             foreach ($request->unit as $unitRequest){
                 $unitRequest = (object)$unitRequest;
                 $unit = new Unit();
                 $unit->name = $unitRequest->name;
-                if ($unitRequest->image) $unit->image = $unitRequest->image;
+                if ($unitRequest->image) $unit->image = "http://res.cloudinary.com/a123abc/image/upload/".$unitRequest->image;
                 else $unit->image = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
                 $unit->quantity = $unitRequest->quantity;
                 $unit->price = $unitRequest->price;
@@ -63,6 +70,12 @@ class ProductsController extends Controller
                 if (isset($unitRequest->s_a_s))$unit->sale_as_standard = 1;
                 else $unit->sale_as_standard = 0;
                 $unit->save();
+                $price = new Price();
+                $price->product_id = $product->id;
+                $price->unit_id = $unit->id;
+                $price->property = '-';
+                $price->price = $unit->price;
+                $price->save();
             }
         }
         if ($request->property){

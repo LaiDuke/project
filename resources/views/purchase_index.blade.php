@@ -145,7 +145,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset("Product")}}">
+                    <a href="{{asset("Price")}}">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Bảng Giá/Hàng Hóa
                     </a>

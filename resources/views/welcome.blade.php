@@ -638,7 +638,7 @@
                                                     </div>
                                                     <div class="widget-progress-wrapper mt-1">
                                                         <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%;"></div>
+                                                            <div class="progress-bar <?php if ($percent_p>90) echo('bg-success'); elseif ($percent_p>75) echo(' bg-primary'); elseif ($percent_p>50) echo(' bg-warning'); else echo ('bg-danger');?> bg-primary " role="progressbar" aria-valuenow="{{$percent_p}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent_p}}%;"></div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -23,5 +23,6 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('/', 'HomeController@index');
     Route::resource("/Product", "ProductViewController");
     Route::resource("/Purchase", 'PurchaseViewController');
-    Route::resource("Sale", "SaleController");
+    Route::resource("/Sale", "SaleController");
+    Route::resource("/Price", "PriceViewController");
 });

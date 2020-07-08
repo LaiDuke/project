@@ -145,7 +145,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset("Product")}}">
+                    <a href="{{asset("Price")}}">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Bảng Giá/Hàng Hóa
                     </a>
@@ -197,6 +197,7 @@
                 <div class="modal-body">
                     <form id="new_product" enctype="multipart/form-data" class="needs-validation" novalidate>
                         @csrf
+                        <input type="number" name="user_id" value="{{auth()->id()}}" style="display: none">
                         <ul class="nav nav-tabs nav-justified">
                             <li class="nav-item"><a class="nav-link show active" href="#tab-eg11-0" data-toggle="tab">Thuộc tính chung</a></li>
                             <li class="nav-item"><a class="nav-link show" href="#tab-eg11-1" data-toggle="tab">Mô tả chi tiết</a></li>
@@ -321,12 +322,12 @@
                                 <textarea name="testCK" id="testCK"></textarea>
                                 <div class="form-row">
                                     <div class="col-md-6">
-                                        <div class="position-relative form-group"><label for="ID"><strong>Cảnh báo tối thiểu</strong></label><input
+                                        <div class="position-relative form-group"><label for="least_left"><strong>Cảnh báo tối thiểu</strong></label><input
                                                 name="least_left" class="form-control" type="number" placeholder="1">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="position-relative form-group"><label for="qr_code"><strong>Cảnh báo tối đa</strong></label><input
+                                        <div class="position-relative form-group"><label for="most_left"><strong>Cảnh báo tối đa</strong></label><input
                                                 name="most_left" class="form-control" type="number" placeholder="99999999"></div>
                                     </div>
                                 </div>
