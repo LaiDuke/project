@@ -51,7 +51,7 @@ class HomeController extends Controller
                 $tmp_left += $pp->left;
             }
         }
-        if ($tmp_quantity) $percent_purchase_product = ($tmp_left/$tmp_quantity)*100;
+        if ($tmp_quantity>0) $percent_purchase_product = ($tmp_left/$tmp_quantity)*100;
         else $percent_purchase_product = 0;
         foreach ($invoices_today as $invoice){
             foreach ($invoice->Product as $invoice_product){
