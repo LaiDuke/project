@@ -188,7 +188,7 @@
             <i class="pe-7s-wallet icon-gradient bg-plum-plate">
             </i>
         </div>
-        <div>Dashboard Boxes
+        <div>Danh mục nhập hàng
             <div class="page-title-subheading">Highly configurable boxes best used for showing
                 numbers in an user friendly way.
             </div>

@@ -259,45 +259,6 @@
                 fd.append('file', file);
                 xhr.send(fd);
             });
-            $(document).on('change', ".image_unit_pick", function () {
-                var ID = $(this).attr('id');
-                var file = this.files[0];
-                var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var responseDataJson = JSON.parse(this.responseText);
-                        console.log(responseDataJson);
-                        var imageUrl = document.querySelector('input[name="unit['+ID+'][image]');
-                        imageUrl.value = responseDataJson.public_id;
-                        document.getElementById('image-unit-preview['+ID+']').src = responseDataJson.url;
-                        $.notify(responseDataJson.public_id, "success");
-                    }
-                }
-                xhr.open('POST', url, true);
-                var fd = new FormData();
-                fd.append('upload_preset', unsignedUploadPreset);
-                fd.append('tags', 'browser_upload');
-                fd.append('file', file);
-                xhr.send(fd);
-            });
-            $("#new_pro_submit").click(function(event){
-                var data = $("#new_product").serializeArray();
-                console.log(data);
-                event.preventDefault();
-                $.ajax({
-                    url: "{{asset("api/products")}}",
-                    type:"POST",
-                    data: data,
-                    success:function(data){
-                        $("#new_product")[0].reset();
-                        $("#addproduct .close").click();
-                        $.notify(data.success, "success");
-                        alert(data.success);
-                        location.reload();
-                    },
-                });
-            });
         });
         $.ajaxSetup({
 
@@ -336,7 +297,7 @@
                         '            <form class="" id="customer">\n' +
                         '                <div class="position-relative form-group"><label><strong>Chân dung khách hàng</strong></label>\n' +
                         '                    <div class="input-group">\n' +
-                        '                         <img src="'+data.self.image+'" style="width: 100px">\n' +
+                        '                         <img src="'+data.self.img+'" style="width: 100px">\n' +
                         '                    </div>\n' +
                         '                </div>\n' +
                         '                <div class="form-row">\n' +
@@ -569,9 +530,8 @@
             <i class="pe-7s-wallet icon-gradient bg-plum-plate">
             </i>
         </div>
-        <div>Dashboard Boxes
-            <div class="page-title-subheading">Highly configurable boxes best used for showing
-                numbers in an user friendly way.
+        <div>Bán hàng
+            <div class="page-title-subheading">Chọn khách hàng và hàng hóa để bán cho khách hàng
             </div>
         </div>
     </div>
@@ -579,7 +539,7 @@
 
         <button type="button" data-toggle="tooltip" title="Nhập hàng hóa" data-placement="bottom"
                 class="btn-shadow mr-3 btn btn-dark">
-            <a href="{{route('Purchase.create')}}" style="text-decoration: none; color:inherit;">
+            <a href="{{route('Sale.create')}}" style="text-decoration: none; color:inherit;">
                 <i class="fa fa-plus"></i>
             </a>
         </button>
@@ -710,7 +670,7 @@
 
     </div>
     <div class="main-card mb-3 card">
-        <div class="card-header">Phiếu nhập
+        <div class="card-header">Hóa đơn
         </div>
         <form id="invoice_form"><div class="table-responsive">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">

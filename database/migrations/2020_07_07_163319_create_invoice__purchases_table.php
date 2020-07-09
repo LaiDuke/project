@@ -16,7 +16,7 @@ class CreateInvoicePurchasesTable extends Migration
         Schema::create('invoice__purchases', function (Blueprint $table) {
             $table->id();
             $table->integer('invoice_product_id');
-            $table->integer('purchase-product_id');
+            $table->integer('purchase_product_id');
             $table->double('quantity');
             $table->double('profit');
             $table->timestamps();

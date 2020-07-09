@@ -16,7 +16,7 @@ class CreatePlacesTable extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->text("note");
+            $table->text("note")->nullable();
             $table->timestamps();
         });
     }

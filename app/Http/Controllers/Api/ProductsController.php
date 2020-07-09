@@ -62,8 +62,8 @@ class ProductsController extends Controller
                 $unitRequest = (object)$unitRequest;
                 $unit = new Unit();
                 $unit->name = $unitRequest->name;
-                if ($unitRequest->image) $unit->image = "http://res.cloudinary.com/a123abc/image/upload/".$unitRequest->image;
-                else $unit->image = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
+                if ($unitRequest->image) $unit->img = "http://res.cloudinary.com/a123abc/image/upload/".$unitRequest->image;
+                else $unit->img = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
                 $unit->quantity = $unitRequest->quantity;
                 $unit->price = $unitRequest->price;
                 $unit->product_id = $product->id ;

@@ -28,7 +28,7 @@ class CustomersController extends Controller
     {
         $customer = new Customer();
         $customer->name = $request->name;
-        if ($request->imageUrl) $customer->image = "http://res.cloudinary.com/a123abc/image/upload/".$request->imageUrl;
+        if ($request->imageUrl) $customer->img = "http://res.cloudinary.com/a123abc/image/upload/".$request->imageUrl;
         else $customer->image = "https://shop-media.vgsshop.vn/pub/media/catalog/product/placeholder/default/78302833_663890810807070_1551180846868725760_n.png";
         $customer->phone = $request->phone;
         $customer->date_of_birth = $request->date_of_birth;

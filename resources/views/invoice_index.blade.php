@@ -277,7 +277,7 @@
                     <td>{{$invoice->created_at}}</td>
                     <td style="text-align: center"><a class="btn btn-sm btn-info" href="">xem</a></td>
                     <td style="text-align: center">
-                        <form action="{{route('Product.destroy', $invoice->id)}}"
+                        <form action="{{route('Invoice.destroy', $invoice->id)}}"
                               method="POST"
                               onsubmit="return confirm('Sure ?')">
                             @csrf

@@ -18,7 +18,7 @@ class CreatePropertiesTable extends Migration
             $table->string("name");
             $table->integer('product_id');
             $table->string('value');
-            $table->text("note");
+            $table->text("note")->nullable();
             $table->timestamps();
         });
     }

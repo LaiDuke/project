@@ -370,7 +370,7 @@
                             '                            <div class="widget-content-wrapper">\n' +
                             '                                <div class="widget-content-left mr-3">\n' +
                             '                                    <div class="widget-content-left">\n' +
-                            '                                        <img width="40" class="rounded-circle" src="http://res.cloudinary.com/a123abc/image/upload/'+data.self.img+'" alt="">\n' +
+                            '                                        <img width="40" class="rounded-circle" src="'+data.self.img+'" alt="">\n' +
                             '                                    </div>\n' +
                             '                                </div>\n' +
                             '                                <div class="widget-content-left flex2">\n' +

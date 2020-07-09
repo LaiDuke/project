@@ -454,7 +454,7 @@
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">
                                                     <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="{{$customer->image}}" alt="">
+                                                        <img width="42" class="rounded-circle" src="{{$customer->img}}" alt="">
                                                     </div>
                                                     <div class="widget-content-left">
                                                         <div class="widget-heading">{{$customer->name}}</div>

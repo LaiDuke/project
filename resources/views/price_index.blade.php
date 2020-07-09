@@ -697,7 +697,7 @@
             <i class="pe-7s-wallet icon-gradient bg-plum-plate">
             </i>
         </div>
-        <div>Danh mục sản phẩm
+        <div>Danh mục bảng giá
             <div class="page-title-subheading">Danh mục chung các sản phẩm mà cửa hàng có, mỗi 1 sản phẩm sẽ có thể có nhiều hàng hóa hoặc mức giá được bán.
                 <br>Ví dụ: Bia Hà Nội có thể có chai, lon, vv
             </div>
@@ -807,7 +807,7 @@
                 <tr>
                     <th scope="row">{{$count++}}</th>
                     <td>SP{{substr(str_repeat(0, 6).$prdt->id, - 6)}}</td>
-                    <td><img src="{{$prd->image}}" style="height: 60px" alt></td>
+                    <td><img src="{{$prd->img}}" style="height: 60px" alt></td>
                     <td>{{$prdt->name}} ({{$prd->name}})</td>
                     <td>
                         <?php
