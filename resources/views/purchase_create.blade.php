@@ -1090,6 +1090,7 @@
         <div class="card-header">Phiếu nhập
         </div>
         <form id="purchase_form"><div class="table-responsive">
+                <input type="number" name="user_id" value="{{auth()->id()}}" style="display: none">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
                     <tr>

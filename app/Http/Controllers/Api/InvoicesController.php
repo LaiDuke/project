@@ -37,7 +37,7 @@ class InvoicesController extends Controller
         $invoice->return = 0;
         $invoice->type = 0;
         $invoice->status = 0;
-        $invoice->user_id = $request->user()->id;
+        $invoice->user_id = $request->user_id;
         $invoice->save();
         foreach ($request->i_p as $i_p){
             $invoice_product = new Invoice_Product();

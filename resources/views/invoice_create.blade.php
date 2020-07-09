@@ -673,6 +673,7 @@
         <div class="card-header">Hóa đơn
         </div>
         <form id="invoice_form"><div class="table-responsive">
+                <input type="number" name="user_id" value="{{auth()->id()}}" style="display: none">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
                     <tr>
